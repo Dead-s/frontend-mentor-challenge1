@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+      :root {
+        --btn-gradient: linear-gradient(
+          125deg,
+          rgba(238, 93, 108, 1) 33%,
+          rgba(247, 101, 75, 1) 51%,
+          rgba(255, 111, 49, 0.952) 69%
+        );
+      }
+      @font-face {
+        font-family: font-bold;
+        src: url(assets/fonts/Roboto-Bold.ttf);
+      }
+      @font-face {
+        font-family: font-regular;
+        src: url(assets/fonts/Roboto-Regular.ttf);
+      }
+      * {
+        font-family: font-regular;
+        color: #181833;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100svh;
+        width: 100svw;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #181833;
+        overflow: hidden;
+      }
+      div {
+        background-color: #fff;
+      }
+      .parent {
+        width: 750px;
+        height: 450px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 20px;
+        padding: 20px 15px;
+        opacity: 1;
+        transition: height 0.8s ease-in-out, opacity 0.7s ease-in-out;
+        z-index: 1;
+        overflow: hidden;
+      }
+      .child {
+        width: 49%;
+        height: 100%;
+        display: flex;
+        justify-content: end;
+      }
+      .child:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        height: inherit;
+        padding: 0 20px;
+      }
+      .mail-div {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+      }
+      .mail-div-child {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .mail-div-child span {
+        font-family: font-bold;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .mail-div-child span:last-child {
+        display: none;
+        color: #f03d3de6;
+      }
+      .mail-div input {
+        padding: 15px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid rgb(189, 189, 189);
+        margin-bottom: 10px;
+        transition: background-color 0.4s ease-in, border 0.4s ease-in;
+      }
+      .mail-div input:focus {
+        border: 1px solid #181833;
+      }
+      .child:first-child button,
+      .success-div div button {
+        width: 90%;
+        font-family: font-bold;
+        padding: 15px 10px;
+        background: #181833;
+        color: #fff;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        /* background: linear-gradient(to left, red 50%, var(--btn-gradient) 50%)
+          right;
+        background-size: 200%; */
+      }
+      .child:first-child button:hover,
+      .success-div div button:hover {
+        background: var(--btn-gradient);
+      }
+      h1 {
+        font-family: font-bold;
+        font-size: 45px;
+        font-weight: 800;
+        margin: 0;
+      }
+      .pointer-div {
+        display: flex;
+        flex-direction: column;
+        margin: 15px 0;
+      }
+      .pointer-div span {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        margin: 10px 0;
+      }
+      .pointer-div span img {
+        padding-right: 15px;
+      }
+      .child:last-child {
+        height: 100%;
+        width: 49%;
+      }
+      .child:last-child img {
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      .success-div {
+        position: absolute;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        height: 0px;
+        /* border-radius: 25px; */
+        z-index: -1;
+        transition: height 0.7s ease-in-out, opacity 0.7s ease-in-out;
+      }
+      .success-div div {
+        width: 75%;
+        height: 80%;
+      }
+      .success-div div img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+      }
+      .success-div div h1 {
+        line-height: 1;
+        margin: 10px 0;
+      }
+      .success-div div p {
+        line-height: 1.5;
+        font-size: 13px;
+        margin: 20px 0;
+      }
+      .success-div div button {
+        width: 100%;
+        margin: 10px 0;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+      @media screen and (max-width: 850px) {
+        .parent {
+          width: 600px;
+        }
+      }
+      @media screen and (max-width: 700px) {
+        h1 {
+          font-size: 35px;
+        }
+        .parent {
+          width: 500px;
+        }
+        .child:first-child {
+          padding: 0 10px;
+        }
+        .pointer-div {
+          margin: 10px 0;
+        }
+        .pointer-div span {
+          margin: 5px 0;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        .parent {
+          padding: 0;
+          width: 100%;
+          height: 100svh;
+          border-radius: 0;
+          flex-direction: column-reverse;
+        }
+        .child:first-child {
+          width: 100%;
+          height: 60%;
+        }
+        .child:first-child .gchild {
+          padding: 25px;
+        }
+        .pointer-div span {
+          word-wrap: break-word;
+          width: 100%;
+        }
+        .child:last-child {
+          width: 100%;
+          height: 35%;
+        }
+        .child:last-child img {
+          object-fit: cover;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+        }
+        .mail-div {
+          width: 100%;
+          margin-top: 25px;
+        }
+        .child:first-child button,
+        .success-div div button {
+          width: 100%;
+          margin-top: 10px;
+        }
+        .success-div {
+          width: 100%;
+          height: 100%;
+          align-items: flex-end;
+        }
+        .success-div div button {
+          width: 85%;
+          position: absolute;
+          bottom: 50px;
+          left: 30px;
+          right: 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <!-- Sign-up form start -->
+      <div class="child">
+        <div class="gchild">
+          <h1>Stay updated!</h1>
+          <p>Join 60,000+ product managers receiving monthly updates on:</p>
+          <div class="pointer-div">
+            <span>
+              <img src="assets/images/icon-list.svg" /> Product discovery and
+              building what matters
+            </span>
+            <span>
+              <img src="assets/images/icon-list.svg" />Measuring to ensure
+              updates are a success
+            </span>
+            <span>
+              <img src="assets/images/icon-list.svg" />And much more!
+            </span>
+          </div>
+          <div class="mail-div">
+            <div class="mail-div-child">
+              <span> Email address </span>
+              <span id="error-msg">Valid email required</span>
+            </div>
+            <input type="email" placeholder="email@company.com" id="mail-inp" />
+          </div>
+          <button id="submit-btn">Subscribe to monthly newsletter</button>
+        </div>
+      </div>
+      <div class="child">
+        <img id="bg-img" src="assets/images/illustration-sign-up-desktop.svg" />
+      </div>
+      <!-- Sign-up form end -->
+    </div>
+    <!-- Success message start -->
+    <div class="success-div">
+      <div>
+        <img src="assets/images/icon-list.svg" />
+        <h1>Thanks for subscribing!</h1>
+        <p>
+          A confirmation email has been sent to
+          <strong> ash@loremcompany.com</strong>. Please open it and click the
+          button inside to confirm your subscription.
+        </p>
+        <button id="btn-dismiss">Dismiss message</button>
+      </div>
+    </div>
+    <!-- Success message end -->
+  </body>
+  <script defer>
+    const mail = document.getElementById("mail-inp");
+    const btn = document.getElementById("submit-btn");
+    const close_btn = document.getElementById("btn-dismiss");
+    const mail_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+    btn.addEventListener("click", () => {
+      !mail.value == "" && mail.value.match(mail_regex)
+        ? validation("yes", "yes")
+        : validation("no", "yes");
+    });
+    mail.addEventListener("input", () => {
+      !mail.value.match(mail_regex)
+        ? validation("no", "no")
+        : validation("yes", "no");
+    });
+    function validation(valid, clicked) {
+      console.log(valid + "\n" + clicked);
+      if (valid == "no") {
+        mail.style =
+          "border: 1px solid rgb(228, 25, 25);background-color: #ffdfdf;color:rgb(228, 25, 25);";
+        document.getElementById("error-msg").style = "display:block;";
+      }
+      if (valid == "yes") {
+        console.log("valid");
+        mail.style = "";
+        document.getElementById("error-msg").style = "display:none;";
+      }
+      if (clicked == "yes" && valid == "yes") {
+        console.log("clicke");
+        document.getElementsByClassName("parent")[0].style =
+          "opacity:0; height:0px; z-index:-2;";
+        setInterval(() => {
+          if (window.screen.width < 600) {
+            document.getElementsByClassName("success-div")[0].style =
+              "opacity:1; height:100%; z-index:2; border-radius: 0;";
+          } else {
+            document.getElementsByClassName("success-div")[0].style =
+              "opacity:1; height:450px; z-index:2;border-radius: 25px;";
+          }
+        }, 500);
+      }
+    }
+
+    close_btn.addEventListener("click", () => {
+        location.reload();
+    });
+    if (window.screen.width < 600) {
+      document.getElementById("bg-img").src =
+        "assets/images/illustration-sign-up-mobile.svg";
+    } else {
+      document.getElementById("bg-img").src =
+        "assets/images/illustration-sign-up-desktop.svg";
+    }
+  </script>
+</html>
