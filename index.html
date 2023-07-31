@@ -313,8 +313,8 @@
         <h1>Thanks for subscribing!</h1>
         <p>
           A confirmation email has been sent to
-          <strong> ash@loremcompany.com</strong>. Please open it and click the
-          button inside to confirm your subscription.
+          <strong id="mail-2"> ash@loremcompany.com</strong>. Please open it and
+          click the button inside to confirm your subscription.
         </p>
         <button id="btn-dismiss">Dismiss message</button>
       </div>
@@ -354,6 +354,7 @@
         document.getElementsByClassName("parent")[0].style =
           "opacity:0; height:0px; z-index:-2;";
         setInterval(() => {
+          document.getElementById("mail-2").innerText = mail.value;
           if (window.screen.width < 600) {
             document.getElementsByClassName("success-div")[0].style =
               "opacity:1; height:100%; z-index:2; border-radius: 0;";
@@ -366,7 +367,7 @@
     }
 
     close_btn.addEventListener("click", () => {
-        location.reload();
+      location.reload();
     });
     if (window.screen.width < 600) {
       document.getElementById("bg-img").src =
